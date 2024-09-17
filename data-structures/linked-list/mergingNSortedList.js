@@ -1,5 +1,5 @@
 class MergingNSortedList {
-    mergeKLists(lists) {
+    mergeNLists(lists) {
         const minHeap = new MinHeap()
 
         for (const list of lists) {
@@ -103,5 +103,40 @@ class MinHeap {
 
     isEmpty() {
         return this.minHeap.length === 0
+    }
+}
+
+class MergingNSortedList {
+    mergeNLists(lists) {
+        const LENGTH = lists.length
+        let interval = 1
+
+        while (interval < LENGTH) {
+            for (let index = 0; index < LENGTH; index += interval * 2) {
+                lists[index] = this.mergeLists(lists[index], lists[index + interval])
+            }
+            interval *= 2
+        }
+
+        return LENGTH > 0 ? lists[0] : null
+    }
+
+    mergeLists(list1, list2) {
+        const dummy = new ListNode(-1)
+        let current = dummy
+
+        while (list1 && list2) {
+            if (list1.val < list2.val) {
+                current.next = list1
+                list1 = list1.next
+            } else {
+                current.next = list2
+                list2 = list2.next
+            }
+            current = current.next
+        }
+
+        current.next = list1 ? list1 : list2
+        return dummy.next
     }
 }
