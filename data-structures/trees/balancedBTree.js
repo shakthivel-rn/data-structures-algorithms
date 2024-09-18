@@ -1,4 +1,4 @@
-function isBalanced(root) {
+function balancedBTree(root) {
     function helper(node) {
         if (node === null) return [true, 0]
 
