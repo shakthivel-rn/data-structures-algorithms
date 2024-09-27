@@ -51,3 +51,16 @@ function canJump(nums) {
 
   return memo[0] === GOOD;
 }
+
+// Greedy Approach
+function canJump(nums) {
+  let lastPosition = nums.length - 1;
+
+  for (let index = nums.length - 1; index >= 0; index--) {
+    if (index + nums[index] >= lastPosition) {
+      lastPosition = index;
+    }
+  }
+
+  return lastPosition === 0;
+}
