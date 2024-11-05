@@ -22,3 +22,27 @@ function zeroMatrix(matrix) {
     }
   }
 }
+
+function zeroMatrix(matrix) {
+  const ROWS = matrix.length,
+    COLS = matrix[0].length;
+  const rowZero = Array.from({ length: ROWS }, () => false);
+  const colZero = Array.from({ length: COLS }, () => false);
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      if (matrix[row][col] === 0) {
+        rowZero[row] = true;
+        colZero[col] = true;
+      }
+    }
+  }
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      if (rowZero[row] || colZero[col]) {
+        matrix[row][col] = 0;
+      }
+    }
+  }
+}
