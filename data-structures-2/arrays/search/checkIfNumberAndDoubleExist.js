@@ -11,3 +11,18 @@ function checkIfExist(arr) {
 
   return false;
 }
+
+function checkIfExist(arr) {
+  if (arr.length === 0 || arr === null) return false;
+  const seen = new Set();
+
+  for (const num of arr) {
+    if (seen.has(2 * num) || seen.has(num / 2)) {
+      return true;
+    }
+
+    seen.add(num);
+  }
+
+  return false;
+}
