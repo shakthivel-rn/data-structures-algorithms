@@ -15,3 +15,5 @@ function selectionSort(arr) {
 
   return arr;
 }
+
+// Selection Sort is not a stable sort
