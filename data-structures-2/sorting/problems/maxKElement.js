@@ -39,3 +39,28 @@ const partition = (arr, left, right) => {
   [arr[storeIndex], arr[right]] = [arr[right], arr[storeIndex]];
   return storeIndex;
 };
+
+function maxKElement(nums, k) {
+  const frequencyMap = {};
+  for (const num of nums) {
+    frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+  }
+
+  const buckets = Array.from({ length: nums.length + 1 }, () => []);
+  for (const [num, count] of Object.entries(frequencyMap)) {
+    buckets[count].push(Number(num));
+  }
+
+  const result = [];
+  for (
+    let index = buckets.length - 1;
+    index >= 0 && result.length < k;
+    index--
+  ) {
+    if (buckets[index].length > 0) {
+      result.push(...buckets[index]);
+    }
+  }
+
+  return result;
+}
