@@ -30,3 +30,35 @@ class MyStack {
     return this.mainQueue.length === 0;
   }
 }
+
+class MyStack {
+  constructor() {
+    this.queue = [];
+  }
+
+  push(x) {
+    this.queue.push(x);
+  }
+
+  pop() {
+    const size = this.queue.length;
+    for (let i = 0; i < size - 1; i++) {
+      this.queue.push(this.queue.shift());
+    }
+    return this.queue.shift();
+  }
+
+  top() {
+    const size = this.queue.length;
+    for (let i = 0; i < size - 1; i++) {
+      this.queue.push(this.queue.shift());
+    }
+    const topElement = this.queue.shift();
+    this.queue.push(topElement);
+    return topElement;
+  }
+
+  empty() {
+    return this.queue.length === 0;
+  }
+}
