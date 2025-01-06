@@ -251,3 +251,30 @@ class MaxHeap {
     return this.heap.length;
   }
 }
+
+// Vertical Approach
+var kWeakestRows = function (mat, k) {
+  const ROWS = mat.length,
+    COLS = mat[0].length;
+  const indexes = [];
+
+  for (let col = 0; col < COLS; col++) {
+    for (let row = 0; row < ROWS; row++) {
+      if (indexes.length === k) break;
+
+      if (mat[row][col] === 0 && (col === 0 || mat[row][col - 1] === 1)) {
+        indexes.push(row);
+      }
+    }
+  }
+
+  let index = 0;
+  while (indexes.length < k) {
+    if (mat[index].at(-1) === 1) {
+      indexes.push(index);
+    }
+    index += 1;
+  }
+
+  return indexes;
+};
