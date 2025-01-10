@@ -1,4 +1,4 @@
-function minCostSticks(sticks) {
+function minCostStic(sticks) {
   const minHeap = new MinHeap();
   let minCost = 0;
 
